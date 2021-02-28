@@ -1,3 +1,17 @@
+credentials:
+  system:
+    domainCredentials:
+    - credentials:
+      - basicSSHUserPrivateKey:
+          description: "PTN-jenkins-agent-credential"
+          id: "PTN-jenkins-agent-credential"
+          privateKeySource:
+            directEntry:
+              #privateKey: ${JENKINS_AGENT_PTN_PRIVATEKEY}
+              #privateKey: "${readFile:/var/secrets/jenkins_ed25519}"
+              privateKey: "${jenkins_ed25519}"
+          scope: SYSTEM
+          username: ${JENKINS_ADMIN_ID}
 jenkins:
   securityRealm:
     local:
@@ -10,8 +24,34 @@ jenkins:
       permissions:
         - "Overall/Administer:${JENKINS_ADMIN_ID}"
         - "Overall/Read:authenticated"
+  crumbIssuer:
+    standard:
+      excludeClientIPFromCrumb: false
+  disableRememberMe: false
   remotingSecurity:
     enabled: true
+  labelAtoms:
+    - name: "jenkins-ptn-agent"
+    - name: "jenkins-ptn-pops-agent"
+    - name: "master"
+  markupFormatter: "plainText"
+  mode: NORMAL
+  myViewsTabBar: "standard"
+  nodes:
+  - permanent:
+      labelString: "jenkins-ptn-pops-agent"
+      launcher:
+        ssh:
+          credentialsId: "PTN-jenkins-agent-credential"
+          host: "jenkins.pops.one"
+          port: 22
+          sshHostKeyVerificationStrategy: "knownHostsFileKeyVerificationStrategy"
+      name: "jenkins-ptn-agent"
+      nodeDescription: "jenkins-ptn-pops-agent"
+      numExecutors: 1
+      remoteFS: "/home/pops/jenkins/popsworkspace"
+      retentionStrategy: "always"
+  numExecutors: 2
 security:
   queueItemAuthenticator:
     authenticators:
