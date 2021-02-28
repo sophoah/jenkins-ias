@@ -10,6 +10,8 @@ more reading : https://fishi.devtail.io/weblog/2019/01/06/jenkins-as-code-part-1
 
 # build the image
 
+need the associated files in the secrets folder and the private keys
+
 docker build --pull -t jenkins:jcasc .
 
 # run the container
