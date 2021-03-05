@@ -1,13 +1,12 @@
 ant:latest
 antisamy-markup-formatter:latest
 authorize-project:latest
+blueocean:latest
 build-timeout:latest
 cloudbees-folder:latest
 configuration-as-code:latest
 credentials-binding:latest
 email-ext:latest
-git:latest
-github-branch-source:latest
 gradle:latest
 ldap:latest
 mailer:latest
@@ -19,3 +18,12 @@ ssh-slaves:latest
 timestamper:latest
 workflow-aggregator:latest
 ws-cleanup:latest
+git:latest
+github-branch-source:latest
+pipeline-githubnotify-step:latest
+ghprb:latest
+blueocean-github-pipeline:latest
+github-oauth:latest
+github-api:latest
+github:latest
+job-dsl:latest

@@ -8,6 +8,14 @@ Thanks to
 
 more reading : https://fishi.devtail.io/weblog/2019/01/06/jenkins-as-code-part-1/
 
+# decrypt the secrets-encrypted folder
+
+```bash
+mkdir -p secrets
+cp secrets-encrypted/* secrets/
+ansible-vault decrypt secrets/*
+```
+
 # build the image
 
 need the associated files in the secrets folder and the private keys
@@ -25,3 +33,6 @@ docker run --name jenkins --rm -p 8080:8080 --env JENKINS_ADMIN_ID=${user} --env
 
 # note for POPS
 secrets-encrypted has been encrypted with ansible-vault.
+
+# TODO
+- need to create a docker persistent volume and make sure jobs history are kept after restart of the container
