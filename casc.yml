@@ -67,7 +67,7 @@ unclassified:
 
 jobs:
   - script: >
-      pipelineJob('test-pipeline-casc') {
+      pipelineJob('PTN-Upgrade') {
           definition {
               cpsScm {
                   scriptPath 'jobs/Upgrade-PTN/Jenkinsfile'
